@@ -1,0 +1,9 @@
+/*
+getAllSubjects
+getSubjectById
+addSubject
+updateSubject
+deleteSubject
+getSubjectsByDepartment
+
+*/

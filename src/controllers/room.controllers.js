@@ -1,0 +1,9 @@
+/* 
+getAllRooms
+getRoomById
+addRoom
+updateRoom
+deleteRoom
+getAvailableRooms
+
+*/
