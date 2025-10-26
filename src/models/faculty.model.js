@@ -19,6 +19,10 @@ const facultySchema = new Schema({
     department: { 
         type: String
     },
+    password: {
+            type: String,
+            required: [true, 'Password is required']
+    },
     availableDays: [String], // e.g., ["Mon", "Tue", "Wed"]
     availableSlots: [String], // e.g., ["9AM-10AM", "10AM-11AM"]
     maxLoad: { 
