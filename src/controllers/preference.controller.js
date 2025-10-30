@@ -1,0 +1,8 @@
+/*
+getAllPreferences
+addPreference
+updatePreference
+deletePreference
+getPreferenceByFaculty
+
+*/
