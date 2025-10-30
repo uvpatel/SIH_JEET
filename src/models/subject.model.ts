@@ -1,45 +1,48 @@
-// student.model.js
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Document, Types } from "mongoose";
 
-// Define the student schema
-const studentSchema = new Schema({
-    name: { 
-    type: String, 
-    required: true, 
-    trim: true 
+export interface SubjectDocument extends Document {
+  subjectCode: string;
+  name: string;
+  department: string;
+  credits: number;
+  faculty: Types.ObjectId[];
+}
+
+const subjectSchema = new Schema<SubjectDocument>(
+  {
+    subjectCode: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
     },
-    rollNumber: { 
-        type: String, 
-        required: true, 
-        unique: true 
+    name: {
+      type: String,
+      required: true,
+      trim: true,
     },
-    email: { 
-        type: String, 
-        required: true, 
-        unique: true 
+    department: {
+      type: String,
+      required: true,
     },
-    branch: { 
-        type: String, 
-        required: true 
+    credits: {
+      type: Number,
+      default: 3,
     },
-    year: { 
-        type: Number, 
-        required: true 
-    },
-    section: { 
-        type: String 
-    },
-    password: {
-            type: String,
-            required: [true, 'Password is required']
-    },
-    subjects:
-        [{ type: Schema.Types.ObjectId,
-            ref: "Subject"
-        }],
-},
-{timestamps: true});
+    faculty: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Faculty",
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 
-export const Student = mongoose.model("Student", studentSchema);
+if (mongoose.models.Subject) {
+  delete mongoose.models.Subject;
+}
 
+export const Subject =
+  mongoose.model<SubjectDocument>("Subject", subjectSchema);
